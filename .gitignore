@@ -9,3 +9,4 @@ target
 /RUNNING_PID
 deploy.sh
 chat_history.csv
+.DS_Store

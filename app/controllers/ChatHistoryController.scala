@@ -7,8 +7,6 @@ import javax.inject._
 import play.api.mvc._
 import play.api.libs.json._
 
-import javax.inject.Inject
-
 @Singleton
 class ChatHistoryController @Inject()(val controllerComponents: ControllerComponents,
                                       chatHistoryService: ChatHistoryService) extends BaseController {
