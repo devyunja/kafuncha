@@ -3,7 +3,7 @@ package controllers
 import models.KafunchaWelcome
 
 import javax.inject._
-import play.api._
+// import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 
@@ -20,11 +20,11 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action { implicit request: Request[AnyContent] =>
+  def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
-  def frontendTest() = Action { implicit request: Request[AnyContent] =>
+  def frontendTest(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(Json.toJson(KafunchaWelcome("Welcome to Kafuncha API!")))
   }
 }

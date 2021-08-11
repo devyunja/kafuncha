@@ -2,4 +2,10 @@
 
 ### API Endpoints
 
-GET https://programming.coffee/frontend-test
+Test
+
+- GET https://programming.coffee/frontend-test
+
+Fetch entire history
+
+- GET https://programming.coffee/history
