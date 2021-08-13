@@ -13,3 +13,7 @@ Fetch entire history
 Attendance (대화횟수상황)
 
 - GET https://programming.coffee/attendance
+
+Daily Chat Count (일별 총 채팅 횟수)
+
+- GET https://programming.coffee/daily-chat-count
