@@ -17,3 +17,7 @@ Attendance (대화횟수상황)
 Daily Chat Count (일별 총 채팅 횟수)
 
 - GET https://programming.coffee/daily-chat-count
+
+Daily Champion
+
+- GET https://programming.coffee/daily-champion
