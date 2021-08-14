@@ -10,8 +10,6 @@ class LinksInChatController @Inject()(val controllerComponents: ControllerCompon
                                       linksInChatService: LinksInChatService) extends BaseController {
 
   def get(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val df = linksInChatService.readChatCsv("conf/chat_history.csv")
-    val models = linksInChatService.toModels(df)
-    Ok(Json.toJson(models))
+    Ok(Json.toJson(linksInChatService.toModels))
   }
 }

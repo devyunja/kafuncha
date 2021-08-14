@@ -12,8 +12,6 @@ class ChatHistoryController @Inject()(val controllerComponents: ControllerCompon
                                       chatHistoryService: ChatHistoryService) extends BaseController {
 
   def chatHistory(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val df = chatHistoryService.readChatCsv("conf/chat_history.csv")
-    val chatHistories = chatHistoryService.toModels(df)
-    Ok(Json.toJson(chatHistories))
+    Ok(Json.toJson(chatHistoryService.toModels))
   }
 }

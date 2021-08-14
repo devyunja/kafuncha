@@ -7,12 +7,10 @@ object SparkSessionProvider {
     .appName("Kakao Chat Analysis")
     .config("spark.master", "local")
     .getOrCreate()
-}
 
-trait SparkSessionProvider {
-  protected val spark: SparkSession = SparkSessionProvider.spark
+  private val chatDataFrame = readChatCsv()
 
-  def readChatCsv(filePath: String): DataFrame = spark.read
+  private def readChatCsv(): DataFrame = spark.read
     .option("multiline", "true")
     .option("inferSchema", "true")
     .option("dateFormat", "MMM dd YYYY")
@@ -21,5 +19,10 @@ trait SparkSessionProvider {
     .option("nullValue", "")
     .option("quote", "\"")
     .option("escape", "\"")
-    .csv(filePath)
+    .csv("conf/chat_history.csv")
+}
+
+trait SparkSessionProvider {
+  protected val spark: SparkSession = SparkSessionProvider.spark
+  protected val chatDataFrame: DataFrame = SparkSessionProvider.chatDataFrame
 }

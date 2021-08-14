@@ -8,11 +8,10 @@ class LinksInChatServiceSpec extends PlaySpec with GuiceOneAppPerTest with Injec
   "LinksInChat#toModels" should {
     "get correct list of models" in {
       val linksInChatService =  inject[LinksInChatService]
-      val chatDf = linksInChatService.readChatCsv("conf/chat_history.csv")
-      val df = linksInChatService.toDf(chatDf)
+      val df = linksInChatService.toDf
       df.show(100)
       df.printSchema()
-      val models = linksInChatService.toModels(chatDf)
+      val models = linksInChatService.toModels
       models.foreach(println)
     }
   }

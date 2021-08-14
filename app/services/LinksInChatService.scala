@@ -7,7 +7,7 @@ import org.apache.spark.sql.functions.col
 import java.util.regex.Pattern
 
 class LinksInChatService extends SparkSessionProvider {
-  def toModels(chatDataFrame: DataFrame): Seq[LinksInChat] = toDf(chatDataFrame)
+  def toModels: Seq[LinksInChat] = toDf
     .collect().toSeq.map { row =>
       val date = row.getAs[String]("Date")
       val user = row.getAs[String]("User")
@@ -15,7 +15,7 @@ class LinksInChatService extends SparkSessionProvider {
       LinksInChat(date, user, seqToString(extractUrl(message)))
     }
 
-  def toDf(chatDataFrame: DataFrame): DataFrame = chatDataFrame
+  def toDf: DataFrame = chatDataFrame
     .filter(col("User") =!= "방장봇")
     .filter(col("Message").contains("https://"))
 

@@ -7,7 +7,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.DataTypes
 
 class DailyChampionService extends SparkSessionProvider {
-  def toModels(chatDataFrame: DataFrame): Seq[DailyChampion] = toDf(chatDataFrame)
+  def toModels: Seq[DailyChampion] = toDf
     .collect().toSeq.map { row =>
       val date = row.getAs[String]("DateOnly")
       val user = row.getAs[String]("User")
@@ -15,7 +15,7 @@ class DailyChampionService extends SparkSessionProvider {
       DailyChampion(date, user, messageCount)
     }
 
-  def toDf(chatDataFrame: DataFrame): DataFrame = {
+  def toDf: DataFrame = {
     val df = chatDataFrame
       .withColumn("DateOnly", col("Date").cast(DataTypes.DateType))
       .withColumn("DateOnly", col("DateOnly").cast(DataTypes.StringType))

@@ -11,8 +11,6 @@ class DailyChatCountController @Inject()(val controllerComponents: ControllerCom
                                          dailyChatCountService: DailyChatCountService) extends BaseController {
 
   def dailyChatCount(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val df = dailyChatCountService.readChatCsv("conf/chat_history.csv")
-    val models = dailyChatCountService.toModels(df)
-    Ok(Json.toJson(models))
+    Ok(Json.toJson(dailyChatCountService.toModels))
   }
 }

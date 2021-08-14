@@ -11,8 +11,6 @@ class DailyChampionController @Inject()(val controllerComponents: ControllerComp
                                         dailyChampionService: DailyChampionService) extends BaseController {
 
   def dailyChampion(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val df = dailyChampionService.readChatCsv("conf/chat_history.csv")
-    val models = dailyChampionService.toModels(df)
-    Ok(Json.toJson(models))
+    Ok(Json.toJson(dailyChampionService.toModels))
   }
 }

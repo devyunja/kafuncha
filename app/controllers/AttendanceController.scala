@@ -11,8 +11,6 @@ class AttendanceController @Inject()(val controllerComponents: ControllerCompone
                                      attendanceService: AttendanceService) extends BaseController {
 
   def attendance(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val df = attendanceService.readChatCsv("conf/chat_history.csv")
-    val attendances = attendanceService.toModels(df)
-    Ok(Json.toJson(attendances))
+    Ok(Json.toJson(attendanceService.toModels))
   }
 }
