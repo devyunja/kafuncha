@@ -21,3 +21,7 @@ Daily Chat Count (일별 총 채팅 횟수)
 Daily Champion
 
 - GET https://programming.coffee/daily-champion
+
+Links in Chat
+
+- GET https://programming.coffee/links-in-chat

@@ -10,6 +10,7 @@ GET     /history                    controllers.ChatHistoryController.chatHistor
 GET     /attendance                 controllers.AttendanceController.attendance()
 GET     /daily-chat-count           controllers.DailyChatCountController.dailyChatCount()
 GET     /daily-champion             controllers.DailyChampionController.dailyChampion()
+GET     /links-in-chat              controllers.LinksInChatController.get()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
