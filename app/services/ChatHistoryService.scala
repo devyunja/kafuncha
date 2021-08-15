@@ -1,7 +1,6 @@
 package services
 
 import models.{ChatLine, SparkSessionProvider}
-import org.apache.spark.sql.DataFrame
 
 class ChatHistoryService extends SparkSessionProvider {
   def toModels: Seq[ChatLine] = chatDataFrame
@@ -11,4 +10,8 @@ class ChatHistoryService extends SparkSessionProvider {
       val message = row.getAs[String]("Message")
       ChatLine(date, user, message)
     }
+
+  def toModels(page: Int, offset: Int): Seq[ChatLine] =
+    ((offset * page) - offset until offset * page).map(toModels.reverse(_))
+
 }

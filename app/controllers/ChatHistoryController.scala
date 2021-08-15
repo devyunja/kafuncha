@@ -14,4 +14,8 @@ class ChatHistoryController @Inject()(val controllerComponents: ControllerCompon
   def chatHistory(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(Json.toJson(chatHistoryService.toModels))
   }
+
+  def chatHistoryPaged(page: Int, offset: Int): Action[AnyContent] = Action { implicit request =>
+    Ok(Json.toJson(chatHistoryService.toModels(page, offset)))
+  }
 }
