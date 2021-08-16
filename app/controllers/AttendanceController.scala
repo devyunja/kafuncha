@@ -1,16 +1,20 @@
 package controllers
 
+import akka.actor.ActorSystem
+import models.AnalysisContext
 import services.AttendanceService
 
 import javax.inject._
-// import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 
-class AttendanceController @Inject()(val controllerComponents: ControllerComponents,
-                                     attendanceService: AttendanceService) extends BaseController {
+import scala.concurrent.Future
 
-  def attendance(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(Json.toJson(attendanceService.toModels))
+class AttendanceController @Inject()(val controllerComponents: ControllerComponents,
+                                     implicit val actorSystem: ActorSystem,
+                                     attendanceService: AttendanceService) extends AnalysisContext with BaseController {
+
+  def attendance(): Action[AnyContent] = Action.async { implicit request =>
+    Future(Ok(Json.toJson(attendanceService.toModels)))
   }
 }

@@ -1,5 +1,9 @@
 # kafuncha
 
+### 프론트엔드 프로젝트 노션
+
+> https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
+
 ### API Endpoints
 
 Test (테스트용)

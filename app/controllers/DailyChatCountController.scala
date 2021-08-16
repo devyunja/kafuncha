@@ -1,16 +1,20 @@
 package controllers
 
+import akka.actor.ActorSystem
+import models.AnalysisContext
 import services.DailyChatCountService
 
 import javax.inject._
-// import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 
-class DailyChatCountController @Inject()(val controllerComponents: ControllerComponents,
-                                         dailyChatCountService: DailyChatCountService) extends BaseController {
+import scala.concurrent.Future
 
-  def dailyChatCount(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(Json.toJson(dailyChatCountService.toModels))
+class DailyChatCountController @Inject()(val controllerComponents: ControllerComponents,
+                                         implicit val actorSystem: ActorSystem,
+                                         dailyChatCountService: DailyChatCountService) extends AnalysisContext with BaseController {
+
+  def dailyChatCount(): Action[AnyContent] = Action.async { implicit request =>
+    Future(Ok(Json.toJson(dailyChatCountService.toModels)))
   }
 }

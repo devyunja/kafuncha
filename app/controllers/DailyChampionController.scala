@@ -1,16 +1,20 @@
 package controllers
 
+import akka.actor.ActorSystem
+import models.AnalysisContext
 import services.DailyChampionService
 
 import javax.inject._
-// import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 
-class DailyChampionController @Inject()(val controllerComponents: ControllerComponents,
-                                        dailyChampionService: DailyChampionService) extends BaseController {
+import scala.concurrent.Future
 
-  def dailyChampion(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(Json.toJson(dailyChampionService.toModels))
+class DailyChampionController @Inject()(val controllerComponents: ControllerComponents,
+                                        implicit val actorSystem: ActorSystem,
+                                        dailyChampionService: DailyChampionService) extends AnalysisContext with BaseController {
+
+  def dailyChampion(): Action[AnyContent] = Action.async { implicit request =>
+    Future(Ok(Json.toJson(dailyChampionService.toModels)))
   }
 }
