@@ -34,3 +34,7 @@ Daily champion (일별 가장 채팅횟수가 많았던 유저)
 Links in chat (채팅방 링크모음)
 
 - GET https://programming.coffee/links-in-chat
+
+척살리스트
+
+- GET https://programming.coffee/prune

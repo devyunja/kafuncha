@@ -1,8 +1,7 @@
 package services
 
 import models.{Attendance, SparkSessionProvider}
-import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.functions._
+import org.apache.spark.sql.functions.col
 
 class AttendanceService extends SparkSessionProvider {
   def toModels: Seq[Attendance] = chatDataFrame
