@@ -39,6 +39,16 @@ Links in chat (채팅방 링크모음)
 
 - GET https://programming.coffee/prune
 
-데일리 키워드
+오늘의 키워드
 
-- GET https://programming.coffee/daily-key-word
+- GET https://programming.coffee/today-keyword
+
+날짜별 키워드
+
+- GET https://programming.coffee/keyword-date
+- params: [date: String] yyyy-MM-dd
+
+날짜별 키워드 - 한번에 여러날
+
+- GET https://programming.coffee/keyword-dates
+- params: [date: List[String]] yyyy-MM-dd
