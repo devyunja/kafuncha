@@ -38,3 +38,7 @@ Links in chat (채팅방 링크모음)
 척살리스트
 
 - GET https://programming.coffee/prune
+
+데일리 키워드
+
+- GET https://programming.coffee/daily-key-word
