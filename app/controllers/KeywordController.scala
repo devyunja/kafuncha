@@ -6,9 +6,10 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
 import services.KeywordService
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
+@Singleton
 class KeywordController @Inject()(val controllerComponents: ControllerComponents,
                                   implicit val actorSystem: ActorSystem,
                                   keywordService: KeywordService) extends AnalysisContext with BaseController {

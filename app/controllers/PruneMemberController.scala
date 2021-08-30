@@ -6,9 +6,10 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
 import services.PruneMemberService
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
+@Singleton
 class PruneMemberController @Inject()(val controllerComponents: ControllerComponents,
                                       implicit val actorSystem: ActorSystem,
                                       pruneMemberService: PruneMemberService) extends AnalysisContext with BaseController {

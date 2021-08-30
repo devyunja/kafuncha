@@ -7,14 +7,14 @@ import org.apache.spark.sql.functions.{col, first, max}
 class CurrentMemberService extends SparkSessionProvider {
   case class Status(date: String, user: String, status: String)
 
-  private def relatedChatMessages: DataFrame = chatDataFrame
+  def relatedChatMessages: DataFrame = chatDataFrame
     .filter(
       col("Message").contains("has been removed from this chatroom.") ||
       col("Message").contains("left this chatroom.") ||
       col("Message").contains("joined this chatroom."))
     .orderBy(col("Date").desc_nulls_last)
 
-  private def extractUserAndStatus: Seq[Status] = relatedChatMessages
+  def extractUserAndStatus: Seq[Status] = relatedChatMessages
     .collect().map { row =>
       val date = row.getAs[String]("Date")
       val user = row.getAs[String]("User")
@@ -28,7 +28,7 @@ class CurrentMemberService extends SparkSessionProvider {
       else Status(date, user, "unknown")
     }
 
-  private def outMembersMap: Map[String, Boolean] = {
+  def outMembersMap: Map[String, Boolean] = {
     import spark.implicits._
     extractUserAndStatus
       .map(status => (status.date, status.user, status.status))
@@ -40,6 +40,17 @@ class CurrentMemberService extends SparkSessionProvider {
         val user = row.getAs[String]("User")
         result ++ Map(user -> false)
       }
+  }
+
+  def outMemberDf: DataFrame = {
+    import spark.implicits._
+    extractUserAndStatus
+      .map(status => (status.date, status.user, status.status))
+      .toDF("Date", "User", "Status")
+      .groupBy(col("User"))
+      .agg(max(col("Date")), first(col("Status")))
+      .filter(col("first(Status)") === "out")
+      .orderBy(col("max(Date)").desc_nulls_last)
   }
 
   def currentMembers: Seq[String] = {

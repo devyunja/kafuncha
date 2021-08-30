@@ -10,6 +10,7 @@ import play.api.libs.json._
 
 import scala.concurrent.Future
 
+@Singleton
 class DailyChatCountController @Inject()(val controllerComponents: ControllerComponents,
                                          implicit val actorSystem: ActorSystem,
                                          dailyChatCountService: DailyChatCountService) extends AnalysisContext with BaseController {

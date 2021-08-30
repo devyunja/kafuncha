@@ -23,6 +23,17 @@ object SparkSessionProvider {
 }
 
 trait SparkSessionProvider {
-  protected val spark: SparkSession = SparkSessionProvider.spark
-  protected val chatDataFrame: DataFrame = SparkSessionProvider.chatDataFrame
+  val spark: SparkSession = SparkSessionProvider.spark
+  val chatDataFrame: DataFrame = SparkSessionProvider.chatDataFrame
+
+  protected def readCsv(path: String): DataFrame = spark.read
+    .option("multiline", "true")
+    .option("inferSchema", "true")
+    .option("dateFormat", "MMM dd YYYY")
+    .option("header", "true")
+    .option("sep", ",")
+    .option("nullValue", "")
+    .option("quote", "\"")
+    .option("escape", "\"")
+    .csv(path)
 }

@@ -10,6 +10,7 @@ import play.api.libs.json._
 
 import scala.concurrent.Future
 
+@Singleton
 class DailyChampionController @Inject()(val controllerComponents: ControllerComponents,
                                         implicit val actorSystem: ActorSystem,
                                         dailyChampionService: DailyChampionService) extends AnalysisContext with BaseController {

@@ -6,9 +6,10 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
 import services.LinksInChatService
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
+@Singleton
 class LinksInChatController @Inject()(val controllerComponents: ControllerComponents,
                                       implicit val actorSystem: ActorSystem,
                                       linksInChatService: LinksInChatService) extends AnalysisContext with BaseController {

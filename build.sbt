@@ -9,14 +9,15 @@ scalaVersion := "2.12.14"
 
 val scalaTestVersion = "5.0.0"
 val sparkVersion = "3.1.2"
-val postgresqlDriverVersion = "42.2.23"
+//val postgresqlDriverVersion = "42.2.23"
 
 libraryDependencies ++= Seq(
-  guice, jdbc,
+  guice,
+//  jdbc,
   "org.scalatestplus.play" %% "scalatestplus-play" % scalaTestVersion % Test,
   "org.apache.spark" %% "spark-core" % sparkVersion,
-  "org.apache.spark" %% "spark-sql" % sparkVersion,
-  "org.postgresql" % "postgresql" % postgresqlDriverVersion
+  "org.apache.spark" %% "spark-sql" % sparkVersion
+//  "org.postgresql" % "postgresql" % postgresqlDriverVersion
 )
 
 // Adds additional packages into Twirl

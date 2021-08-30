@@ -10,6 +10,7 @@ import play.api.libs.json._
 
 import scala.concurrent.Future
 
+@Singleton
 class AttendanceController @Inject()(val controllerComponents: ControllerComponents,
                                      implicit val actorSystem: ActorSystem,
                                      attendanceService: AttendanceService) extends AnalysisContext with BaseController {
