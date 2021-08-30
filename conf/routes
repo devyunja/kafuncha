@@ -18,6 +18,7 @@ GET     /keyword-date               controllers.KeywordController.byDate(date: S
 GET     /keyword-dates              controllers.KeywordController.byDates(date: Seq[String])
 POST    /upload                     controllers.ChatFileUploadController.multipart()
 GET     /current-member             controllers.CurrentMemberController.get()
+GET     /mention                    controllers.MentionController.get()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
