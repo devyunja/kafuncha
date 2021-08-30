@@ -7,10 +7,13 @@ import org.apache.spark.sql.types.DataTypes
 import org.joda.time.DateTime
 import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}
 
+import javax.inject.Singleton
+
 object RangeChoices extends Enumeration {
   val DAILY, WEEKLY = Value
 }
 
+@Singleton
 class KeywordService extends SparkSessionProvider {
   def todayMessagesDf: DataFrame = chatDataFrame
     .withColumn("DateOnly", col("Date").cast(DataTypes.DateType))

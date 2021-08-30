@@ -6,6 +6,9 @@ import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions.{col, max}
 import org.apache.spark.sql.types.DataTypes
 
+import javax.inject.Singleton
+
+@Singleton
 class DailyChampionService extends SparkSessionProvider {
   def toModels: Seq[DailyChampion] = toDf
     .collect().toSeq.map { row =>

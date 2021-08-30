@@ -4,6 +4,9 @@ import models.SparkSessionProvider
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{col, first, max}
 
+import javax.inject.Singleton
+
+@Singleton
 class CurrentMemberService extends SparkSessionProvider {
   case class Status(date: String, user: String, status: String)
 

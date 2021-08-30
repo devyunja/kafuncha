@@ -4,7 +4,9 @@ import play.api.libs.Files
 
 import java.io.File
 import java.util.UUID
+import javax.inject.Singleton
 
+@Singleton
 class ChatFileUploadService {
   def uuid: String = UUID.randomUUID().toString
 

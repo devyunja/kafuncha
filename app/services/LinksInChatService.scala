@@ -5,7 +5,9 @@ import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.col
 
 import java.util.regex.Pattern
+import javax.inject.Singleton
 
+@Singleton
 class LinksInChatService extends SparkSessionProvider {
   def toModels: Seq[LinksInChat] = toDf
     .collect().toSeq.map { row =>

@@ -5,8 +5,9 @@ import org.apache.spark.sql.{Column, DataFrame}
 import org.apache.spark.sql.functions.{col, current_date, datediff, max}
 import org.apache.spark.sql.types.DataTypes
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 
+@Singleton
 class PruneMemberService @Inject()(currentMemberService: CurrentMemberService) extends SparkSessionProvider {
   def toModels: Seq[PruneMember] = currentUserLastChat
     .withColumn("LastShowDate", col("LastShowDate").cast(DataTypes.StringType))

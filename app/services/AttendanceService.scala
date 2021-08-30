@@ -3,6 +3,9 @@ package services
 import models.{Attendance, SparkSessionProvider}
 import org.apache.spark.sql.functions.col
 
+import javax.inject.Singleton
+
+@Singleton
 class AttendanceService extends SparkSessionProvider {
   def toModels: Seq[Attendance] = chatDataFrame
     .groupBy(col("User"))

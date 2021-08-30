@@ -2,6 +2,9 @@ package services
 
 import models.{ChatLine, SparkSessionProvider}
 
+import javax.inject.Singleton
+
+@Singleton
 class ChatHistoryService extends SparkSessionProvider {
   def toModels: Seq[ChatLine] = chatDataFrame
     .collect().toSeq.map { row =>

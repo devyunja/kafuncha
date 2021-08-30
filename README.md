@@ -62,3 +62,7 @@ Uploading CSV file (채팅 파일 업로드)
 
 - multipart-form data: chat_history
 - 수정중: 아이디토큰
+
+> GET /current-member
+
+Get current chat member list
