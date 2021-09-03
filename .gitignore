@@ -11,3 +11,4 @@ deploy.sh
 chat_history.csv
 .DS_Store
 conf/uploads
+run.sh

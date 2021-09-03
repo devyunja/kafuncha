@@ -28,7 +28,7 @@ Attendance (유저별 전채 채팅 횟수)
 
 Daily chat Count (일별 채팅 횟수)
 
-> GET /daily-champion
+> GET /daily-champion/:filename
 
 Daily champion (일별 가장 채팅횟수가 많았던 유저)
 
@@ -61,7 +61,6 @@ Keywords by dates
 Uploading CSV file (채팅 파일 업로드)
 
 - multipart-form data: chat_history
-- 수정중: 아이디토큰
 
 > GET /current-member
 

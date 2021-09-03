@@ -2,7 +2,7 @@ package services
 
 import com.amazonaws.auth.{AWSStaticCredentialsProvider, BasicAWSCredentials}
 import com.amazonaws.regions.Regions
-import com.amazonaws.services.s3.model.{Bucket, CannedAccessControlList, CopyObjectResult, DeleteObjectsRequest, DeleteObjectsResult, ObjectMetadata, PutObjectResult, S3ObjectSummary}
+import com.amazonaws.services.s3.model.{Bucket, CannedAccessControlList, CopyObjectResult, DeleteObjectsRequest, DeleteObjectsResult, ObjectMetadata, PutObjectResult, S3Object, S3ObjectSummary}
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 import play.api.Configuration
 
@@ -26,7 +26,7 @@ object FileMimeType extends Enumeration {
 }
 
 @Singleton
-class AwsS3Service @Inject()(config: Configuration) {
+class AmazonS3Service @Inject()(config: Configuration) {
   val awsCredential: AWSCredential = AWSCredential(
     config.get[String]("aws.credentials.access-key"),
     config.get[String]("aws.credentials.secret-key")
@@ -52,13 +52,14 @@ class AwsS3Service @Inject()(config: Configuration) {
     "png" -> FileMimeType.PNG
   )
 
-  def createBuckets(bucketName: String): Either[RuntimeException, Bucket] =
-    if (client.doesBucketExistV2(bucketName)) Left(new RuntimeException(s"bucket: $bucketName already exists"))
-    else Right(client.createBucket(bucketName))
+  def createBucket(bucketName: String): Bucket =
+    client.createBucket(bucketName)
 
   def deleteBucket(bucketName: String): Unit = client.deleteBucket(bucketName)
 
   def listBuckets(): Seq[Bucket] = client.listBuckets().asScala
+
+  def findBucket(bucketName: String): Boolean = listBuckets().exists(_.getName.equals(bucketName))
 
   def uploadObject(bucketName: String,
                    sourcePath: String,
@@ -109,4 +110,9 @@ class AwsS3Service @Inject()(config: Configuration) {
                  destinationBucketName: String,
                  destinationObjectKey: String): CopyObjectResult = client
     .copyObject(sourceBucketName, sourceObjectKey, destinationBucketName, destinationObjectKey)
+
+  def getObject(bucketName: String, objectKey: String): S3Object = client.getObject(bucketName, objectKey)
+
+  def getObjectBytes(bucketName: String, objectKey: String): Array[Byte] =
+    client.getObject(bucketName, objectKey).getObjectContent.readAllBytes()
 }

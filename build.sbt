@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.docker.DockerChmodType
+
 name := """kafuncha-backend"""
 organization := "coffee.programming"
 
@@ -48,3 +50,5 @@ dockerEnvVars := Map(
   "JAVA_TOOL_OPTIONS" -> "-Dpidfile.path=/dev/null",
   "LOG_DIR" -> (Docker / defaultLinuxLogsLocation).value
 )
+
+dockerChmodType := DockerChmodType.UserGroupWriteExecute
