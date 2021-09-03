@@ -8,7 +8,7 @@ class ChatFileUploadServiceSpec extends PlaySpec with GuiceOneAppPerTest with In
  "ChatFileUploadService" should {
    "work correctly" in {
      val chatFileUploadService = inject[ChatFileUploadService]
-     val uuid = chatFileUploadService.uuid
+     val uuid = ChatFileUploadService.uuid
      println(s"uuid: $uuid")
    }
  }

@@ -32,6 +32,10 @@ Daily chat Count (일별 채팅 횟수)
 
 Daily champion (일별 가장 채팅횟수가 많았던 유저)
 
+> GET /daily-champion-rank/:filename
+
+Daily champion with rank (일별 채팅횟수 랭킹)
+
 > GET /links-in-chat
 
 Links in chat (채팅방 링크모음)

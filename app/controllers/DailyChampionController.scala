@@ -18,10 +18,10 @@ class DailyChampionController @Inject()(val controllerComponents: ControllerComp
                                         fileService: FileService) extends AnalysisContext with BaseController {
 
   def dailyChampion(filename: String): Action[AnyContent] = Action.async { implicit request => Future {
-    val model = fileService
+    val models = fileService
       .dataToModel(amazonS3Service.getObjectBytes(ChatFileUploadService.s3BucketName, filename), dailyChampionService)
       .asInstanceOf[Seq[DailyChampion]]
 
-    Ok(Json.toJson(model))
+    Ok(Json.toJson(models))
   }}
 }

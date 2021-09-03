@@ -8,10 +8,10 @@ class DailyChampionServiceSpec extends PlaySpec with GuiceOneAppPerTest with Inj
   "DailyChampionService#toModels" should {
     "get correct list of models" in {
       val dailyChampionService = inject[DailyChampionService]
-      val df = dailyChampionService.toDf
+      val df = dailyChampionService.toDf("conf/chat_history.csv")
       df.show(100)
       df.printSchema()
-      val models = dailyChampionService.toModels
+      val models = dailyChampionService.toModels("conf/chat_history.csv")
       models.foreach(println)
     }
   }

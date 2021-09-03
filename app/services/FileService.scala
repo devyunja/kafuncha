@@ -24,7 +24,7 @@ class FileService {
     outStream.write(bytesData)
     outStream.close()
 
-    val models = kafunchaService.toModel(s"$uploadPath/$uuid.csv")
+    val models = kafunchaService.toModels(s"$uploadPath/$uuid.csv")
 
     file.delete()
 
