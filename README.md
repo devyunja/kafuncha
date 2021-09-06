@@ -69,3 +69,7 @@ Uploading CSV file (채팅 파일 업로드)
 > GET /current-member
 
 Get current chat member list
+
+> GET /mention/:filename
+
+Get mentioned users and mention count by date

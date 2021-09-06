@@ -63,4 +63,7 @@ class CurrentMemberService extends SparkSessionProvider {
       .collect().map(row => row.getAs[String]("User"))
       .filter(member => outMembers.getOrElse(member, true))
   }
+
+  def currentMembersWithAt: Seq[String] =
+    currentMembers.map(currentMember => s"@$currentMember")
 }
