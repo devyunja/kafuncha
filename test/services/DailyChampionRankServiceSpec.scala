@@ -8,12 +8,7 @@ class DailyChampionRankServiceSpec extends PlaySpec with GuiceOneAppPerTest with
   "DailyChampionRankService" should {
     "work correctly" in {
       val dailyChampionRankService = inject[DailyChampionRankService]
-      val df = dailyChampionRankService.toDf("conf/chat_history.csv")
-
-      df.show(300)
-      df.printSchema()
-
-      val models = dailyChampionRankService.toModels("conf/chat_history.csv")
+      val models = dailyChampionRankService.toModels("conf/chat_history.csv", 3)
       models.foreach(println)
     }
   }

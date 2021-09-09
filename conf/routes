@@ -10,7 +10,7 @@ GET     /history/:filename                  controllers.ChatHistoryController.ch
 GET     /attendance                         controllers.AttendanceController.attendance()
 GET     /daily-chat-count                   controllers.DailyChatCountController.dailyChatCount()
 GET     /daily-champion/:filename           controllers.DailyChampionController.dailyChampion(filename: String)
-GET     /daily-champion-rank/:filename      controllers.DailyChampionRankController.get(filename: String)
+GET     /daily-champion-rank/:filename      controllers.DailyChampionRankController.get(filename: String, rewindNumDays: Option[Int])
 GET     /links-in-chat                      controllers.LinksInChatController.get()
 GET     /prune                              controllers.PruneMemberController.get()
 GET     /today-keyword                      controllers.KeywordController.today()
