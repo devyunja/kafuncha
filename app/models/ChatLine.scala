@@ -6,4 +6,4 @@ case object ChatLine {
   implicit val format: OFormat[ChatLine] = Json.format[ChatLine]
 }
 
-case class ChatLine(date: String, user: String, message: String)
+case class ChatLine(date: String, user: String, message: String) extends KafunchaModel

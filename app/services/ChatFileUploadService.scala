@@ -1,5 +1,6 @@
 package services
 
+import play.api.Configuration
 import play.api.libs.Files
 
 import java.io.File
@@ -12,12 +13,14 @@ object ChatFileUploadService {
 }
 
 @Singleton
-class ChatFileUploadService @Inject()(amazonS3Service: AmazonS3Service) {
+class ChatFileUploadService @Inject()(amazonS3Service: AmazonS3Service, config: Configuration) {
   import ChatFileUploadService._
+
+  val configTempFilePath: String = config.get[String]("temp-file-path")
 
   def upload(chatHistory: Files.TemporaryFile): String = {
     val filename = uuid
-    val tempFile = File.createTempFile(s"$filename-", ".csv", new File("conf/uploads"))
+    val tempFile = File.createTempFile(s"$filename-", ".csv", new File(configTempFilePath))
     val tempFilename = tempFile.getName
     val tempFilePath = tempFile.getPath
 

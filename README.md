@@ -10,7 +10,9 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 
 Test (테스트용)
 
-> GET /history
+> GET /history/{filename}
+
+- params: desc: Option[Boolean] (default = false)
 
 Fetch entire history (전체 채팅 내역, 오름차순)
 

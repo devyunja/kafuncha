@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{AnalysisContext, DailyChampion, DailyChampionRank}
+import models.{AnalysisContext, DailyChampionRank}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
 import services.{AmazonS3Service, ChatFileUploadService, DailyChampionRankService, FileService}

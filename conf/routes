@@ -6,8 +6,7 @@
 # An example controller showing a sample home page
 GET     /                                   controllers.HomeController.index()
 GET     /frontend-test                      controllers.HomeController.frontendTest()
-GET     /history                            controllers.ChatHistoryController.chatHistory()
-GET     /history-paged                      controllers.ChatHistoryController.chatHistoryPaged(page: Int, offset: Int)
+GET     /history/:filename                  controllers.ChatHistoryController.chatHistory(filename: String, desc: Option[Boolean])
 GET     /attendance                         controllers.AttendanceController.attendance()
 GET     /daily-chat-count                   controllers.DailyChatCountController.dailyChatCount()
 GET     /daily-champion/:filename           controllers.DailyChampionController.dailyChampion(filename: String)
