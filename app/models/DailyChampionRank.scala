@@ -6,4 +6,4 @@ case object DailyChampionRank {
   implicit val format: OFormat[DailyChampionRank] = Json.format[DailyChampionRank]
 }
 
-case class DailyChampionRank(date: String, name: String, messageCount: Long, rank: Int) extends KafunchaModel
+case class DailyChampionRank(date: String, user: String, messageCount: Long, rank: Int) extends KafunchaModel
