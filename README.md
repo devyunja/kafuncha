@@ -6,72 +6,71 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 
 ### API base URL: https://programming.coffee
 
-> GET /frontend-test
+### GET /history/{filename}
 
-Test (테스트용)
+- Fetches entire chat histories
 
-> GET /history/{filename}
+- Params:
 
-- params: desc: Option[Boolean] (default = false)
+| Key   | Type    | Required   | default   | format |
+| :---: | :-----: | :--------: | :-------: | :----: |
+| desc  | boolean | false      | false     | N/A    |
 
-Fetch entire history (전체 채팅 내역, 오름차순)
+### GET /attendance
 
-> GET /history-paged
+- Total chat count by user
 
-Fetch pages history (페이지별 채팅 내역, 내림차순)
+### GET /daily-chat-count
 
-- params: [page: Int, offset: Int]
+- Total chat count by date
 
-> GET /attendance
+### GET /daily-champion/{filename}
 
-Attendance (유저별 전채 채팅 횟수)
+- Top user by date
 
-> GET /daily-chat-count
+### GET /daily-champion-rank/{filename}
 
-Daily chat Count (일별 채팅 횟수)
+- Users with rank by date
 
-> GET /daily-champion/:filename
+### GET /links-in-chat
 
-Daily champion (일별 가장 채팅횟수가 많았던 유저)
+- Links from the chat
 
-> GET /daily-champion-rank/:filename
+### GET /prune
 
-Daily champion with rank (일별 채팅횟수 랭킹)
+- Users with data for pruning
 
-> GET /links-in-chat
+### GET /today-keyword
 
-Links in chat (채팅방 링크모음)
+- Today's keyword list
 
-> GET /prune
+### GET /keyword-date
 
-Prune member list (척살리스트)
+- Keyword list by date
+- Params:
 
-> GET /today-keyword
+| Key   | Type    | Required   | default   | format     |
+| :---: | :-----: | :--------: | :-------: | :--------: |
+| date  | string  | true       | N/A       | yyyy-mm-dd |
 
-Today's keyword (오늘의 키워드)
+### GET /keyword-dates
 
-> GET /keyword-date
+- Keyword list by date list
+- Params:
 
-Keywords by a date
+| Key   | Type      | Required   | default   | format     |
+| :---: | :-----:   | :--------: | :-------: | :--------: |
+| date  | [string]  | true       | N/A       | yyyy-mm-dd |
 
-- params: [date: String] yyyy-MM-dd
+### POST /upload
 
-> GET /keyword-dates
+- Chat history CSV file uploading
+- **multipart-form data**: chat_history
 
-Keywords by dates
-  
-- params: [date: List[String]] yyyy-MM-dd
+### GET /current-member
 
-> POST /upload
+- Current members
 
-Uploading CSV file (채팅 파일 업로드)
+### GET /mention/:filename
 
-- multipart-form data: chat_history
-
-> GET /current-member
-
-Get current chat member list
-
-> GET /mention/:filename
-
-Get mentioned users and mention count by date
+- Mentioned users by date
