@@ -6,7 +6,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ChatHistoryService extends SparkSessionProvider with KafunchaService {
-  override def toModels(sourcePath: String): Seq[KafunchaModel] = {
+  override def toModels(sourcePath: String, kafunchaServiceOption: Option[KafunchaServiceOption]): Seq[KafunchaModel] = {
     readCsv(sourcePath).collect().map { row =>
       val date = row.getAs[String]("Date")
       val user = row.getAs[String]("User")
@@ -16,5 +16,5 @@ class ChatHistoryService extends SparkSessionProvider with KafunchaService {
   }
 
   def toPagedModels(sourcePath: String, page: Int, offset: Int): Seq[KafunchaModel] =
-    ((offset * page) - offset until offset * page).map(toModels(sourcePath).reverse(_))
+    ((offset * page) - offset until offset * page).map(toModels(sourcePath, None).reverse(_))
 }

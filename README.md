@@ -43,7 +43,7 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 
 - Links from the chat
 
-### GET /prune
+### GET /prune/{filename}
 
 - Users with data for pruning
 
@@ -74,10 +74,10 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 - Chat history CSV file uploading
 - **multipart-form data**: chat_history
 
-### GET /current-member
+### GET /current-member/{filename}
 
 - Current members
 
-### GET /mention/:filename
+### GET /mention/{filename}
 
 - Mentioned users by date

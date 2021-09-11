@@ -12,12 +12,12 @@ GET     /daily-chat-count                   controllers.DailyChatCountController
 GET     /daily-champion/:filename           controllers.DailyChampionController.dailyChampion(filename: String)
 GET     /daily-champion-rank/:filename      controllers.DailyChampionRankController.get(filename: String, rewindNumDays: Option[Int])
 GET     /links-in-chat                      controllers.LinksInChatController.get()
-GET     /prune                              controllers.PruneMemberController.get()
+GET     /prune/:filename                    controllers.PruneMemberController.get(filename: String)
 GET     /today-keyword                      controllers.KeywordController.today()
 GET     /keyword-date                       controllers.KeywordController.byDate(date: String)
 GET     /keyword-dates                      controllers.KeywordController.byDates(date: Seq[String])
 POST    /upload                             controllers.ChatFileUploadController.multipart()
-GET     /current-member                     controllers.CurrentMemberController.get()
+GET     /current-member/:filename           controllers.CurrentMemberController.get(filename: String)
 GET     /mention/:filename                  controllers.MentionController.get(filename: String)
 
 # Map static resources from the /public folder to the /assets URL path

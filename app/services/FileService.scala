@@ -13,7 +13,9 @@ class FileService @Inject()(config: Configuration) {
 
   def isExist(path: String): Boolean = Files.exists(Paths.get(path))
 
-  def dataToModel(bytesData: Array[Byte], kafunchaService: KafunchaService): Seq[KafunchaModel] = {
+  def dataToModel(bytesData: Array[Byte], kafunchaService: KafunchaService,
+                  kafunchaServiceOption: Option[KafunchaServiceOption] = None): Seq[KafunchaModel] = {
+
     val uuid = ChatFileUploadService.uuid
     val file = new File(s"$tempFilePath/$uuid.csv")
     val outStream = new FileOutputStream(file)
@@ -21,7 +23,7 @@ class FileService @Inject()(config: Configuration) {
     outStream.write(bytesData)
     outStream.close()
 
-    val models = kafunchaService.toModels(s"$tempFilePath/$uuid.csv")
+    val models = kafunchaService.toModels(s"$tempFilePath/$uuid.csv", kafunchaServiceOption)
 
     file.delete()
 

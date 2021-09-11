@@ -7,12 +7,9 @@ import org.apache.spark.sql.types.DataTypes
 
 import javax.inject.{Inject, Singleton}
 
-/**
- * TODO: Implement this service.
- */
 @Singleton
 class MentionService @Inject()(currentMemberService: CurrentMemberService) extends SparkSessionProvider with KafunchaService {
-  override def toModels(sourcePath: String): Seq[KafunchaModel] = {
+  override def toModels(sourcePath: String, kafunchaServiceOption: Option[KafunchaServiceOption]): Seq[KafunchaModel] = {
     toDf(sourcePath).collect().map { row =>
       val date = row.getAs[String]("DateOnly")
       val user = row.getAs[String]("User").split("@")(1)
@@ -30,7 +27,7 @@ class MentionService @Inject()(currentMemberService: CurrentMemberService) exten
       .withColumn("DateOnly", col("DateOnly").cast(DataTypes.StringType))
       .groupBy(col("DateOnly"), col("OnlyID"))
       .agg(count(col("OnlyID")).as("MentionCount"))
-      .filter(col("OnlyID").isInCollection(currentMemberService.currentMembersWithAt))
+      .filter(col("OnlyID").isInCollection(currentMemberService.currentMembersWithAt(sourcePath)))
       .withColumnRenamed("OnlyID", "User")
       .orderBy(col("DateOnly").desc_nulls_last)
   }

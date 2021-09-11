@@ -10,12 +10,13 @@ import javax.inject.Singleton
 
 @Singleton
 class DailyChampionService extends SparkSessionProvider with KafunchaService {
-  override def toModels(sourcePath: String): Seq[KafunchaModel] = toDf(sourcePath: String).collect().toSeq.map { row =>
-    val date = row.getAs[String]("DateOnly")
-    val user = row.getAs[String]("User")
-    val messageCount = row.getAs[Long]("max(count(Message))")
-    DailyChampion(date, user, messageCount)
-  }
+  override def toModels(sourcePath: String, kafunchaServiceOption: Option[KafunchaServiceOption]): Seq[KafunchaModel] =
+    toDf(sourcePath: String).collect().toSeq.map { row =>
+      val date = row.getAs[String]("DateOnly")
+      val user = row.getAs[String]("User")
+      val messageCount = row.getAs[Long]("max(count(Message))")
+      DailyChampion(date, user, messageCount)
+    }
 
   def toDf(sourcePath: String): DataFrame = {
     val df = readCsv(sourcePath)
