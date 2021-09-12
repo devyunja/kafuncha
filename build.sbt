@@ -11,16 +11,16 @@ scalaVersion := "2.12.14"
 
 val scalaTestVersion = "5.0.0"
 val sparkVersion = "3.1.2"
-//val postgresqlDriverVersion = "42.2.23"
+val postgresqlDriverVersion = "42.2.23"
 val AwsSdkVersion = "1.11.1018"
 
 libraryDependencies ++= Seq(
   guice,
-//  jdbc,
+  jdbc,
   "org.scalatestplus.play" %% "scalatestplus-play" % scalaTestVersion % Test,
   "org.apache.spark" %% "spark-core" % sparkVersion,
   "org.apache.spark" %% "spark-sql" % sparkVersion,
-//  "org.postgresql" % "postgresql" % postgresqlDriverVersion,
+  "org.postgresql" % "postgresql" % postgresqlDriverVersion,
   "com.amazonaws" % "aws-java-sdk" % AwsSdkVersion
 )
 

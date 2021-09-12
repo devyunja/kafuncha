@@ -8,8 +8,6 @@ class CurrentMemberServiceSpec extends PlaySpec with GuiceOneAppPerTest with Inj
   "CurrentMemberService#currentMembers" should {
     "get current member list in chat room" in {
       val currentMemberService = inject[CurrentMemberService]
-      val currentMembers = currentMemberService.currentMembers
-      currentMembers.zipWithIndex.foreach(memberWithIndex => println(s"${memberWithIndex._2}: ${memberWithIndex._1}") )
     }
   }
 }

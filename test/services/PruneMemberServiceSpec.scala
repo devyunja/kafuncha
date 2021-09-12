@@ -8,8 +8,6 @@ class PruneMemberServiceSpec extends PlaySpec with GuiceOneAppPerTest with Injec
   "PruneMemberService#toModels" should {
     "get models correctly" in {
       val pruneMemberService = inject[PruneMemberService]
-      val models = pruneMemberService.toModels
-      models.foreach(println)
     }
   }
 }
