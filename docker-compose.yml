@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  kafuncha-postgres:
+    image: postgres:latest
+    container_name: kafuncha-postgres
+    ports:
+      - "8686:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "postgres"
