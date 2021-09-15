@@ -20,7 +20,7 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 
 - Total chat count by user
 
-### GET /daily-chat-count
+### GET /daily-chat-count/{filename}
 
 - Total chat count by date
 

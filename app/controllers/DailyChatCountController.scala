@@ -1,8 +1,8 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.AnalysisContext
-import services.DailyChatCountService
+import models.{AnalysisContext, DailyChatCount}
+import services.{AmazonS3Service, ChatFileUploadService, DailyChatCountService, FileService}
 
 import javax.inject._
 import play.api.mvc._
@@ -13,9 +13,17 @@ import scala.concurrent.Future
 @Singleton
 class DailyChatCountController @Inject()(val controllerComponents: ControllerComponents,
                                          implicit val actorSystem: ActorSystem,
-                                         dailyChatCountService: DailyChatCountService) extends AnalysisContext with BaseController {
+                                         dailyChatCountService: DailyChatCountService,
+                                         fileService: FileService,
+                                         amazonS3Service: AmazonS3Service) extends AnalysisContext with BaseController {
 
-  def dailyChatCount(): Action[AnyContent] = Action.async { implicit request =>
-    Future(Ok(Json.toJson(dailyChatCountService.toModels)))
+  def dailyChatCount(filename: String): Action[AnyContent] = Action.async { implicit request =>
+    Future {
+      val models = fileService
+        .dataToModel(amazonS3Service.getObjectBytes(ChatFileUploadService.s3BucketName, filename), dailyChatCountService)
+        .asInstanceOf[Seq[DailyChatCount]]
+
+      Ok(Json.toJson(models))
+    }
   }
 }

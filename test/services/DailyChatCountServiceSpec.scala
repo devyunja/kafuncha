@@ -8,11 +8,6 @@ class DailyChatCountServiceSpec extends PlaySpec with GuiceOneAppPerTest with In
   "DailyChatCountServiceSpec#toModels" should {
     "get correct list of models" in {
       val dailyChatCountService = inject[DailyChatCountService]
-      val dailyChatCountServiceDf = dailyChatCountService.toDf
-      val models = dailyChatCountService.toModels
-      dailyChatCountServiceDf.show(100)
-      dailyChatCountServiceDf.printSchema()
-      models.foreach(println)
     }
   }
 }
