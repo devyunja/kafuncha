@@ -10,10 +10,12 @@ import javax.inject.Singleton
 
 @Singleton
 class DailyChampionRankService extends SparkSessionProvider with KafunchaService {
+  val defaultRewindNumDays: Int = 30
+
   override def toModels(sourcePath: String, kafunchaServiceOption: Option[KafunchaServiceOption]): Seq[KafunchaModel] = {
     val rewindNumDays =
       if (kafunchaServiceOption.isDefined) kafunchaServiceOption.get.rewindNumDays.get
-      else 30
+      else defaultRewindNumDays
 
     val df = toDf(sourcePath)
     val firstDate = df.collect().head.getAs[String]("DateOnly")
