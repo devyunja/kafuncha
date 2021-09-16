@@ -33,9 +33,9 @@ https://busy-mandrill-84b.notion.site/Kafuncha-579e37e48abd4a9887fb0a78e7f518bb
 - Users with rank by date
 - Params:
 
-| Key           | Type    | Required   | default   | format     | description             |
-| :-----------: | :-----: | :--------: | :-------: | :--------: | :---------------------: |
-| rewindNumDays | int     | false      | N/A       | yyyy-mm-dd | how many days to rewind |
+| Key           | Type    | Required   | default   | description             |
+| :-----------: | :-----: | :--------: | :-------: | :---------------------: |
+| rewindNumDays | int     | false      | N/A       | how many days to rewind |
 
 - If you don't pass the **rewindNumDays**, the result will contain all data from the beginning of the history.
 
